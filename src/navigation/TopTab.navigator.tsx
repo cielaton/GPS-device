@@ -24,7 +24,7 @@ const topTabNavigator = () => {
           shadowColor: 'white',
         },
         tabBarActiveTintColor: 'white',
-        tabBarInactiveTintColor: 'rgba(0, 0, 0, 0.5',
+        tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.5)',
       }}>
       <topTab.Screen name={'Person 1'} component={HomeComponent} />
       <topTab.Screen name={'Person 2'} component={HomeComponent} />

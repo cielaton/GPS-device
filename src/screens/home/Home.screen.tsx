@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     backgroundColor: appStyles.colors.screenBackground,
   },
   headingView: {
-    flex: 0.1,
+    flex: 0.12,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   greetingText: {
     fontSize: 40,
     fontWeight: 'bold',
+    color: 'white',
   },
 
   userNameText: {
