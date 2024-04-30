@@ -1,11 +1,15 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import HomeScreen from './src/screens/home_screen/HomeScreen.tsx';
+import {NavigationContainer} from '@react-navigation/native';
+
+import HomeScreen from './src/screens/home/Home.screen.tsx';
 
 const App = (): React.JSX.Element => {
   return (
     <SafeAreaView style={styles.safeAreaView}>
-      <HomeScreen />
+      <NavigationContainer>
+        <HomeScreen />
+      </NavigationContainer>
     </SafeAreaView>
   );
 };

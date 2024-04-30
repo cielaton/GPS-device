@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Edit, Bell} from 'iconoir-react-native';
-import colors from '../../styles/colors/colors.ts';
+import appStyles from '../../styles/styles.ts';
 
 const userName = 'Kiet';
 
@@ -32,7 +32,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   homeScreen: {
     flex: 1,
-    backgroundColor: colors.screenBackground,
+    backgroundColor: appStyles.colors.screenBackground,
   },
   headingView: {
     marginHorizontal: 25,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   userNameText: {
     fontSize: 40,
     fontWeight: 'bold',
-    color: colors.styledText,
+    color: appStyles.colors.styledText,
   },
 
   editUserNameIcon: {
@@ -67,10 +67,10 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.iconBackground,
+    backgroundColor: appStyles.colors.iconBackground,
     borderStyle: 'solid',
     borderRadius: 50 / 2,
-    borderColor: colors.iconBorder,
+    borderColor: appStyles.colors.iconBorder,
     borderWidth: 2,
   },
 });
