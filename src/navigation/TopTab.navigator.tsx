@@ -1,7 +1,7 @@
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import HomeComponent from '../components/home/Home.component.tsx';
-import appStyles from '../styles/styles.ts';
+import appStyles from '../styles/appStyles.ts';
 
 const topTab = createMaterialTopTabNavigator();
 
