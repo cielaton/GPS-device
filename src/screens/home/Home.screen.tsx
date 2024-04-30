@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Edit, Bell} from 'iconoir-react-native';
 import appStyles from '../../styles/styles.ts';
+import TopTabNavigator from '../../navigation/TopTab.navigator.tsx';
 
 const userName = 'Kiet';
 
@@ -23,6 +24,7 @@ const HomeScreen = () => {
           <Bell color={'white'} height={30} width={30} />
         </View>
       </View>
+      <TopTabNavigator />
     </View>
   );
 };
@@ -32,10 +34,10 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   homeScreen: {
     flex: 1,
+    paddingHorizontal: 25,
     backgroundColor: appStyles.colors.screenBackground,
   },
   headingView: {
-    marginHorizontal: 25,
     flex: 0.1,
     flexDirection: 'row',
     alignItems: 'center',
