@@ -22,8 +22,10 @@ const HomeComponent = () => {
   }, []);
   return (
     <View style={styles.homeComponent}>
-      <Id />
-      <View style={styles.editableInfoContainer}>
+      <View style={styles.idWrapper}>
+        <Id />
+      </View>
+      <View style={styles.editableInfoWrapper}>
         <EditableInfo
           icon={<TriangleFlag color={'white'} width={25} height={25} />}
           title={'Reference'}
@@ -56,7 +58,10 @@ const styles = StyleSheet.create({
     backgroundColor: appStyles.colors.screenBackground,
   },
 
-  editableInfoContainer: {
+  idWrapper: {
+    flex: 0.1,
+  },
+  editableInfoWrapper: {
     flex: 0.15,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -69,6 +74,8 @@ const styles = StyleSheet.create({
     flex: 0.15,
   },
   mapView: {
-    flex: 0.3,
+    marginTop: 20,
+    borderRadius: 20,
+    flex: 0.52,
   },
 });

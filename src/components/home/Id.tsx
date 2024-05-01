@@ -19,7 +19,7 @@ export default Id;
 
 const styles = StyleSheet.create({
   idContainer: {
-    flex: 0.1,
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
   },
