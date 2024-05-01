@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Cube, Edit} from 'iconoir-react-native';
-import appStyles from '../../../styles/appStyles.ts';
+import appStyles from '../../styles/appStyles.ts';
 
 const Id = () => {
   return (

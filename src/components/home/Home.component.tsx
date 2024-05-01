@@ -8,9 +8,9 @@ import {
   NavArrowRight,
 } from 'iconoir-react-native';
 import appStyles from '../../styles/appStyles.ts';
-import Id from './id/Id.tsx';
-import EditableInfo from './editable_info/EditableInfo.tsx';
-import LocationRecord from './location_record/LocationRecord.tsx';
+import Id from './Id.tsx';
+import EditableInfo from './EditableInfo.tsx';
+import LocationRecord from './LocationRecord.tsx';
 
 const HomeComponent = () => {
   return (

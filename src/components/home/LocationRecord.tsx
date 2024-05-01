@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, Switch, Text, View} from 'react-native';
-import appStyles from '../../../styles/appStyles.ts';
+import appStyles from '../../styles/appStyles.ts';
 
 const LocationRecord = () => {
   const [isEnabled, setIsEnabled] = useState(false);
