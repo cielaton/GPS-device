@@ -23,6 +23,9 @@ const HomeComponent = () => {
           bodySecondLine={''}
         />
       </View>
+      <View>
+        <Text>Location Record</Text>
+      </View>
     </View>
   );
 };
