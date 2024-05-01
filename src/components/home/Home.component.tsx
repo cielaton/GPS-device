@@ -1,13 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {TriangleFlag, OnePointCircle} from 'iconoir-react-native';
+import MapBox, {MapView} from '@rnmapbox/maps';
+
 import appStyles from '../../styles/appStyles.ts';
 import Id from './Id.tsx';
 import EditableInfo from './EditableInfo.tsx';
 import LocationRecord from './LocationRecord.tsx';
 import LocationInfo from './LocationInfo.tsx';
 
+MapBox.setAccessToken(
+  'sk.eyJ1IjoidHVhbmtpZXQxNyIsImEiOiJjbHZvMTg4YzAwOWp0MmprMW50Z3AzbXpiIn0.tiATAs2MD3jN3_VBhB3IXw',
+)
+  .then(() => console.log('MapBox initialization successfully'))
+  .catch(err => console.log(`Error: ${err}`));
 const HomeComponent = () => {
+  useEffect(() => {
+    MapBox.setTelemetryEnabled(false);
+  }, []);
   return (
     <View style={styles.homeComponent}>
       <Id />
@@ -31,6 +41,7 @@ const HomeComponent = () => {
       <View style={styles.locationInfoWrapper}>
         <LocationInfo />
       </View>
+      <MapView style={styles.mapView} />
     </View>
   );
 };
@@ -54,5 +65,8 @@ const styles = StyleSheet.create({
   },
   locationInfoWrapper: {
     flex: 0.15,
+  },
+  mapView: {
+    flex: 0.3,
   },
 });
