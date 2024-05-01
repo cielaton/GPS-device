@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {TriangleFlag, OnePointCircle} from 'iconoir-react-native';
 import MapBox, {MapView} from '@rnmapbox/maps';
+import Config from 'react-native-config';
 
 import appStyles from '../../styles/appStyles.ts';
 import Id from './Id.tsx';
@@ -9,11 +10,12 @@ import EditableInfo from './EditableInfo.tsx';
 import LocationRecord from './LocationRecord.tsx';
 import LocationInfo from './LocationInfo.tsx';
 
-MapBox.setAccessToken(
-  'sk.eyJ1IjoidHVhbmtpZXQxNyIsImEiOiJjbHZvMTg4YzAwOWp0MmprMW50Z3AzbXpiIn0.tiATAs2MD3jN3_VBhB3IXw',
-)
+const mapBoxAccessToken = Config.MAP_BOX_ACCESS_TOKEN;
+
+MapBox.setAccessToken(mapBoxAccessToken!)
   .then(() => console.log('MapBox initialization successfully'))
   .catch(err => console.log(`Error: ${err}`));
+
 const HomeComponent = () => {
   useEffect(() => {
     MapBox.setTelemetryEnabled(false);
