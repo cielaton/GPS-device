@@ -2,18 +2,32 @@ import React, {useState} from 'react';
 import {StyleSheet, Switch, Text, View} from 'react-native';
 import appStyles from '../../styles/appStyles.ts';
 
-const LocationRecord = () => {
-  const [isEnabled, setIsEnabled] = useState(false);
+const onSwitchChange = (
+  locationRecord: boolean,
+  isEnabledValue: boolean,
+  setLocationRecord: any,
+  setIsEnabled: any,
+) => {
+  setLocationRecord(!locationRecord);
+  setIsEnabled(!isEnabledValue);
+};
 
+const LocationRecord = ({locationRecord, setLocationRecord}: any) => {
+  const [isEnabled, setIsEnabled] = useState(true);
   return (
     <View style={styles.locationRecordContainer}>
       <Text style={styles.locationRecordTitle}>Location Record</Text>
       <Switch
         trackColor={{false: 'black', true: appStyles.colors.iconBorder}}
         thumbColor={isEnabled ? appStyles.colors.styledText : 'white'}
-        onValueChange={() => {
-          setIsEnabled(!isEnabled);
-        }}
+        onValueChange={() =>
+          onSwitchChange(
+            locationRecord,
+            isEnabled,
+            setLocationRecord,
+            setIsEnabled,
+          )
+        }
         value={isEnabled}
       />
     </View>

@@ -1,27 +1,17 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {TriangleFlag, OnePointCircle} from 'iconoir-react-native';
-import MapBox, {Camera, MapView} from '@rnmapbox/maps';
-import Config from 'react-native-config';
 
 import appStyles from '../../styles/appStyles.ts';
 import Id from './Id.tsx';
 import EditableInfo from './EditableInfo.tsx';
 import LocationRecord from './LocationRecord.tsx';
 import LocationInfo from './LocationInfo.tsx';
-
-const mapBoxAccessToken = Config.MAP_BOX_ACCESS_TOKEN;
-
-MapBox.setAccessToken(mapBoxAccessToken!)
-  .then(() => console.log('MapBox initialization successfully'))
-  .catch(err => console.log(`Error: ${err}`));
-
-const initialCoordinates = [108.1496424, 16.0736355];
+import MapViewComponent from './MapViewComponent.tsx';
 
 const HomeComponent = () => {
-  useEffect(() => {
-    MapBox.setTelemetryEnabled(false);
-  }, []);
+  const [locationRecord, setLocationRecord] = React.useState(true);
+  console.log(`Location record value: ${locationRecord}`);
   return (
     <View style={styles.homeComponent}>
       <View style={styles.idWrapper}>
@@ -42,21 +32,23 @@ const HomeComponent = () => {
         />
       </View>
       <View style={styles.locationRecordWrapper}>
-        <LocationRecord />
+        <LocationRecord
+          locationRecord={locationRecord}
+          setLocationRecord={setLocationRecord}
+        />
       </View>
-      <View style={styles.locationInfoWrapper}>
-        <LocationInfo />
-      </View>
-      <View style={styles.mapViewContainer}>
-        <MapView
-          style={styles.mapView}
-          compassEnabled={true}
-          logoEnabled={false}
-          attributionEnabled={false}
-          scaleBarEnabled={false}>
-          <Camera centerCoordinate={initialCoordinates} zoomLevel={15} />
-        </MapView>
-      </View>
+      {locationRecord ? (
+        <View style={styles.locationRecordView}>
+          <View style={styles.locationInfoWrapper}>
+            <LocationInfo />
+          </View>
+          <View style={styles.mapViewWrapper}>
+            <MapViewComponent />
+          </View>
+        </View>
+      ) : (
+        <></>
+      )}
     </View>
   );
 };
@@ -81,17 +73,13 @@ const styles = StyleSheet.create({
   locationRecordWrapper: {
     flex: 0.08,
   },
+  locationRecordView: {
+    flex: 0.67,
+  },
   locationInfoWrapper: {
-    flex: 0.15,
+    flex: 0.2,
   },
-  mapViewContainer: {
-    overflow: 'hidden',
-    marginTop: 20,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    flex: 0.52,
-  },
-  mapView: {
-    flex: 1,
+  mapViewWrapper: {
+    flex: 0.8,
   },
 });
