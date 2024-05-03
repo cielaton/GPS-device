@@ -45,7 +45,9 @@ const HomeComponent = () => {
       <View style={styles.locationInfoWrapper}>
         <LocationInfo />
       </View>
-      <MapView style={styles.mapView} />
+      <View style={styles.mapViewContainer}>
+        <MapView style={styles.mapView} />
+      </View>
     </View>
   );
 };
@@ -73,9 +75,14 @@ const styles = StyleSheet.create({
   locationInfoWrapper: {
     flex: 0.15,
   },
-  mapView: {
+  mapViewContainer: {
+    overflow: 'hidden',
     marginTop: 20,
-    borderRadius: 20,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
     flex: 0.52,
+  },
+  mapView: {
+    flex: 1,
   },
 });
