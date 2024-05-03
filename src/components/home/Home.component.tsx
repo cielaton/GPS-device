@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {TriangleFlag, OnePointCircle} from 'iconoir-react-native';
-import MapBox, {MapView} from '@rnmapbox/maps';
+import MapBox, {Camera, MapView} from '@rnmapbox/maps';
 import Config from 'react-native-config';
 
 import appStyles from '../../styles/appStyles.ts';
@@ -15,6 +15,8 @@ const mapBoxAccessToken = Config.MAP_BOX_ACCESS_TOKEN;
 MapBox.setAccessToken(mapBoxAccessToken!)
   .then(() => console.log('MapBox initialization successfully'))
   .catch(err => console.log(`Error: ${err}`));
+
+const initialCoordinates = [108.1496424, 16.0736355];
 
 const HomeComponent = () => {
   useEffect(() => {
@@ -46,7 +48,14 @@ const HomeComponent = () => {
         <LocationInfo />
       </View>
       <View style={styles.mapViewContainer}>
-        <MapView style={styles.mapView} />
+        <MapView
+          style={styles.mapView}
+          compassEnabled={true}
+          logoEnabled={false}
+          attributionEnabled={false}
+          scaleBarEnabled={false}>
+          <Camera centerCoordinate={initialCoordinates} zoomLevel={15} />
+        </MapView>
       </View>
     </View>
   );
