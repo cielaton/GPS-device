@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Edit, Bell} from 'iconoir-react-native';
-import appStyles from '../../styles/appStyles.ts';
-import TopTabNavigator from '../../navigation/TopTab.navigator.tsx';
+import appStyles from '../styles/appStyles.ts';
+import TopTabNavigator from '../navigation/TopTab.navigator.tsx';
 
 const userName = 'Kiet';
 
