@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   sections: {
     borderRadius: 10,
     backgroundColor: appStyles.colors.mainSection,
-    flex: 0.48,
+    flex: 1,
   },
 
   headerContainer: {

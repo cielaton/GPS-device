@@ -3,12 +3,13 @@ import {SafeAreaView, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
 import HomeScreen from './src/screens/Home.screen.tsx';
+import AppStackNavigator from './src/navigation/AppStack.navigator.tsx';
 
 const App = (): React.JSX.Element => {
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <NavigationContainer>
-        <HomeScreen />
+        <AppStackNavigator />
       </NavigationContainer>
     </SafeAreaView>
   );
