@@ -4,12 +4,13 @@ import { ArrowLeft } from 'iconoir-react-native';
 import colors from '../styles/colors/colors';
 import BackHomeButton from '../components/reference_edit/BackHomeButton.component';
 
-const ReferenceEditScreen = ({navigation}: any) => {
+const ReferenceEditScreen = ({ navigation }: any) => {
   return (
     <View style={styles.referenceEditScreen}>
       <View style={styles.backHomeButtonWrapper}>
-        <BackHomeButton navigation={navigation}/>
+        <BackHomeButton navigation={navigation} />
       </View>
+      <Text style={styles.referenceLocationTitle}>Reference Location</Text>
     </View>
   );
 };
@@ -24,6 +25,14 @@ const styles = StyleSheet.create({
   },
 
   backHomeButtonWrapper: {
-    flex: 0.05,
+    flex: 0.08,
   },
+  referenceLocationTitle: {
+    flex: 0.05,
+    textAlignVertical: 'center',
+    color: 'white',
+    fontSize: 35,
+    lineHeight: 35,
+    fontWeight: 'bold',
+  }
 });

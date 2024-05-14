@@ -8,7 +8,7 @@ const BackHomeButton = ({ navigation }: any) => {
     navigation.navigate("HomeScreen")
   }}>
     <ArrowLeft width={16} height={16} color={colors.styledText} strokeWidth={3} />
-    <Text style={styles.backHomeButtonText}>Home</Text>
+    <Text style={styles.Text}>Home</Text>
   </TouchableOpacity>
 }
 
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  backHomeButtonText: {
+  Text: {
     marginLeft: 5,
     color: colors.styledText,
     fontSize: 18,
