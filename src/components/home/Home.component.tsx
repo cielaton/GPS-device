@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {TriangleFlag, OnePointCircle} from 'iconoir-react-native';
+import {TouchableOpacity} from 'react-native';
 
 import appStyles from '../../styles/appStyles.ts';
 import Id from './Id.tsx';
@@ -9,27 +10,37 @@ import LocationRecord from './LocationRecord.tsx';
 import LocationInfo from './LocationInfo.tsx';
 import MapViewComponent from './MapViewComponent.tsx';
 
-const HomeComponent = () => {
+const HomeComponent = ({navigation}: any) => {
   const [locationRecord, setLocationRecord] = React.useState(true);
-  console.log(`Location record value: ${locationRecord}`);
+
   return (
     <View style={styles.homeComponent}>
       <View style={styles.idWrapper}>
         <Id />
       </View>
       <View style={styles.editableInfoWrapper}>
-        <EditableInfo
-          icon={<TriangleFlag color={'white'} width={25} height={25} />}
-          title={'Reference'}
-          bodyFirstLine={'16°05\'09.8"N'}
-          bodySecondLine={'108°09\'04.5"E'}
-        />
-        <EditableInfo
-          icon={<OnePointCircle color={'white'} width={25} height={25} />}
-          title={'Boundary'}
-          bodyFirstLine={'100 meters'}
-          bodySecondLine={''}
-        />
+        <TouchableOpacity
+          style={styles.editableInfoContainer}
+          onPress={() => navigation.navigate('ReferenceEditScreen')}>
+          <EditableInfo
+            icon={<TriangleFlag color={'white'} width={25} height={25} />}
+            title={'Reference'}
+            bodyFirstLine={'16°05\'09.8"N'}
+            bodySecondLine={'108°09\'04.5"E'}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.editableInfoContainer}
+          onPress={() => {
+            navigation.navigate('BoundaryEditScreen');
+          }}>
+          <EditableInfo
+            icon={<OnePointCircle color={'white'} width={25} height={25} />}
+            title={'Boundary'}
+            bodyFirstLine={'100 meters'}
+            bodySecondLine={''}
+          />
+        </TouchableOpacity>
       </View>
       <View style={styles.locationRecordWrapper}>
         <LocationRecord
@@ -39,9 +50,11 @@ const HomeComponent = () => {
       </View>
       {locationRecord ? (
         <View style={styles.locationRecordView}>
-          <View style={styles.locationInfoWrapper}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('LocationHistoryScreen')}
+            style={styles.locationInfoWrapper}>
             <LocationInfo />
-          </View>
+          </TouchableOpacity>
           <View style={styles.mapViewWrapper}>
             <MapViewComponent />
           </View>
@@ -68,6 +81,9 @@ const styles = StyleSheet.create({
     flex: 0.15,
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  editableInfoContainer: {
+    flex: 0.48,
   },
 
   locationRecordWrapper: {
