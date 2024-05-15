@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, TextInput, View} from 'react-native';
 import colors from '../styles/colors/colors';
-import BackHomeButton from '../components/reference_and_boundary_edit//BackHomeButton.component';
-import LocationInput from '../components/reference_edit/LocationInput.component';
+import BackHomeButton from '../components/reference_and_boundary_edit/BackHomeButton.tsx';
 import ApplyButton from '../components/reference_and_boundary_edit/ApplyButton';
+import UnitSelection from '../components/boundary_edit/UnitSelection.tsx';
 
-const BoundaryEditScreen= ({ navigation }: any) => {
-
-  const [LongitudeInput, setLongitudeInput] = useState("");
-  const [LatitudeInput, setLatitudeInput] = useState("");
+const BoundaryEditScreen = ({navigation}: any) => {
+  const [boundary, setBoundary] = useState('');
 
   return (
     <View style={styles.boundaryEditScreen}>
       <View style={styles.backHomeButtonWrapper}>
         <BackHomeButton navigation={navigation} />
       </View>
-      <Text style={styles.referencelocationTitle}>Reference location</Text>
-      <View style={styles.locationInputWrapper}>
-        <LocationInput inputTitle={"Longitude"} onChangeTextSetState={setLongitudeInput} />
-        <LocationInput inputTitle={"Latitude"} onChangeTextSetState={setLatitudeInput} />
+      <Text style={styles.boundaryRadiusTitle}>Boundary radius</Text>
+      <TextInput style={styles.Input} onChangeText={setBoundary} />
+      <View style={styles.unitSelectionWrapper}>
+        <UnitSelection />
       </View>
-      <View style={styles.applyButtonWrapper}><ApplyButton /></View>
+      <View style={styles.applyButtonWrapper}>
+        <ApplyButton />
+      </View>
     </View>
   );
 };
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   backHomeButtonWrapper: {
     flex: 0.08,
   },
-  referencelocationTitle: {
+  boundaryRadiusTitle: {
     flex: 0.05,
     textAlignVertical: 'center',
     color: 'white',
@@ -46,12 +46,28 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   locationInputWrapper: {
-    flex: 0.27
+    flex: 0.27,
+  },
+
+  Input: {
+    height: 60,
+    paddingHorizontal: 20,
+    marginTop: 20,
+    color: 'white',
+    fontSize: 18,
+    backgroundColor: colors.inputBackground,
+    borderRadius: 15,
+    borderWidth: 3,
+    borderColor: colors.secondaryBackground,
+  },
+
+  unitSelectionWrapper: {
+    flex: 0.1,
+    zIndex: 999,
   },
 
   applyButtonWrapper: {
     justifyContent: 'center',
     flex: 0.135,
-  }
-
+  },
 });
