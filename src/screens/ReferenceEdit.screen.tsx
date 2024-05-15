@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import colors from '../styles/colors/colors';
-import BackHomeButton from '../components/reference_edit/BackHomeButton.component';
+import BackHomeButton from '../components/reference_and_boundary_edit//BackHomeButton.component';
 import LocationInput from '../components/reference_edit/LocationInput.component';
-import ApplyButton from '../components/reference_edit/ApplyButton';
+import ApplyButton from '../components/reference_and_boundary_edit/ApplyButton';
 
 const ReferenceEditScreen = ({ navigation }: any) => {
 
