@@ -13,6 +13,6 @@ fn index() -> &'static str {
 #[launch]
 fn rocket() -> _ {
     dotenv().ok();
-    database::mongodb::connect();
+    database::mongodb::connect().unwrap();
     rocket::build().mount("/", routes![index])
 }
