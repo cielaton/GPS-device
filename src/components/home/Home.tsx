@@ -10,7 +10,7 @@ import LocationRecord from './LocationRecord.tsx';
 import LocationInfo from './LocationInfo.tsx';
 import MapViewComponent from './MapViewComponent.tsx';
 
-const HomeComponent = ({navigation}: any) => {
+const Home = ({navigation}: any) => {
   const [locationRecord, setLocationRecord] = React.useState(true);
 
   return (
@@ -66,7 +66,7 @@ const HomeComponent = ({navigation}: any) => {
   );
 };
 
-export default HomeComponent;
+export default Home;
 
 const styles = StyleSheet.create({
   homeComponent: {

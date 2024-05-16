@@ -1,20 +1,22 @@
-import React from "react";
-import { View, Text, TextInput, StyleSheet } from 'react-native'
-import colors from "../../styles/colors/colors";
+import React from 'react';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
+import colors from '../../styles/colors/colors';
 
-const LocationInput = ({inputTitle, onChangeTextSetState }: any) => {
-  return <View style={styles.locationInput}>
+const LocationInput = ({inputTitle, onChangeTextSetState}: any) => {
+  return (
+    <View style={styles.locationInput}>
       <Text style={styles.Title}>{inputTitle}</Text>
-    <TextInput style={styles.Input} onChangeText={onChangeTextSetState} />
-  </View>
-}
+      <TextInput style={styles.Input} onChangeText={onChangeTextSetState} />
+    </View>
+  );
+};
 
 export default LocationInput;
 
 const styles = StyleSheet.create({
   locationInput: {
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   Title: {
     includeFontPadding: false,
@@ -33,5 +35,5 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderWidth: 3,
     borderColor: colors.secondaryBackground,
-  }
-})
+  },
+});
