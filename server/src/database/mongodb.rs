@@ -1,16 +1,12 @@
-use mongodb::{
-    bson::doc,
-    options::{ClientOptions, ServerApi, ServerApiVersion},
-    Client,
-};
+use mongodb::{bson::doc, options::ClientOptions, Client, Collection};
 use std::env;
-use std::error::Error;
 use tokio;
+use crate::models::locationInfo::LocationInfo;
 
 #[tokio::main]
-pub async fn connect() -> mongodb::error::Result<()> {
+pub async fn connect() -> mongodb::error::Result<Client> {
     let clientURI = env::var("MONGODB_URI").expect("Error: No MONGODB_URI var!");
-    let mut clientOpt = ClientOptions::parse_async(clientURI).await?;
+    let clientOpt = ClientOptions::parse_async(clientURI).await?;
     let client = Client::with_options(clientOpt)?;
 
     client
@@ -19,6 +15,27 @@ pub async fn connect() -> mongodb::error::Result<()> {
         .await?;
     println!("Pinged sucessfully, you have connected to MongoDb");
 
-    Ok(())
+    Ok(client)
 }
 
+#[tokio::main]
+pub async fn location_info_collection() -> mongodb::error::Result<Collection<LocationInfo>> {
+    let client = connect().unwrap();
+
+    let collection: Collection<LocationInfo> = client
+        .database("GPS-device")
+        .collection("location_info");
+
+    Ok(collection)
+}
+
+#[tokio::main]
+pub async fn device_list_collection() -> mongodb::error::Result<Collection<LocationInfo>> {
+    let client = connect().unwrap();
+
+    let collection: Collection<LocationInfo> = client
+        .database("GPS-device")
+        .collection("device_list");
+
+    Ok(collection)
+}
