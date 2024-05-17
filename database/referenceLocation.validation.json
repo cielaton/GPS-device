@@ -1,0 +1,36 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "Location Info",
+    "required": [
+      "deviceId"
+    ],
+    "properties": {
+      "deviceId": {
+        "bsonType": "string"
+      },
+      "referenceLocation": {
+        "bsonType": "object",
+        "properties": {
+          "longitude": {
+            "bsonType": "string"
+          },
+          "latitude": {
+            "bsonType": "string"
+          }
+        }
+      },
+      "boundary": {
+        "bsonType": "object",
+        "properties": {
+          "value": {
+            "bsonType": "double"
+          },
+          "unit": {
+            "bsonType": "string"
+          }
+        }
+      }
+    }
+  }
+}
