@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import React, { useContext, useState } from 'react';
+import {View, StyleSheet, Text} from 'react-native';
 import {TriangleFlag, OnePointCircle} from 'iconoir-react-native';
 import {TouchableOpacity} from 'react-native';
 
@@ -9,14 +9,18 @@ import EditableInfo from './EditableInfo.tsx';
 import LocationRecord from './LocationRecord.tsx';
 import LocationInfo from './LocationInfo.tsx';
 import MapViewComponent from './MapViewComponent.tsx';
+import { DeviceContext } from '../../services/device/device.context.tsx';
+import colors from '../../styles/colors/colors.ts';
 
 const Home = ({navigation}: any) => {
-  const [locationRecord, setLocationRecord] = React.useState(true);
+  const [locationRecord, setLocationRecord] = useState(true);
+  const {isValidDevice}: any = useContext(DeviceContext);
 
   return (
     <View style={styles.homeComponent}>
       <View style={styles.idWrapper}>
         <Id />
+        {isValidDevice? <></>: <Text style={styles.notValidText}>Your device is not valid!</Text>}
       </View>
       <View style={styles.editableInfoWrapper}>
         <TouchableOpacity
@@ -76,6 +80,10 @@ const styles = StyleSheet.create({
 
   idWrapper: {
     flex: 0.1,
+  },
+  notValidText: {
+    fontSize: 15,
+    color: colors.errorText,
   },
   editableInfoWrapper: {
     flex: 0.15,

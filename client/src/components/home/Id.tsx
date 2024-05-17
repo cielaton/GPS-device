@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Check, Cube, Edit } from 'iconoir-react-native';
 import appStyles from '../../styles/appStyles.ts';
@@ -7,10 +7,16 @@ import colors from '../../styles/colors/colors.ts';
 import { DeviceContext } from '../../services/device/device.context.tsx';
 
 const Id = () => {
-  const { setDeviceId }: any = useContext(DeviceContext);
+  const { setDeviceId, isValidDevice }: any = useContext(DeviceContext);
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [deviceIdInput, setDeviceIdInput] = useState('');
+
+  useEffect(() => {
+    if (isValidDevice) {
+      setIsEditMode(false);
+    }
+  }, [isValidDevice]);
 
   return (
     <View style={styles.idContainer}>
@@ -26,7 +32,9 @@ const Id = () => {
           />
           <TouchableOpacity
             style={styles.CheckButton}
-            onPress={() => setDeviceId(deviceIdInput)}>
+            onPress={() => {
+              setDeviceId(deviceIdInput);
+            }}>
             <Check width={20} height={20} color={'black'} strokeWidth={2} />
           </TouchableOpacity>
         </View>
