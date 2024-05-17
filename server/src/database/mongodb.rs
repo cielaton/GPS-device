@@ -1,41 +1,45 @@
-use mongodb::{bson::doc, options::ClientOptions, Client, Collection};
-use std::env;
-use tokio;
 use crate::models::locationInfo::LocationInfo;
+use mongodb::{
+    bson::doc,
+    sync::{Client, Collection},
+};
+use std::env;
 
-#[tokio::main]
-pub async fn connect() -> mongodb::error::Result<Client> {
+pub fn connect() -> mongodb::error::Result<Client> {
     let clientURI = env::var("MONGODB_URI").expect("Error: No MONGODB_URI var!");
-    let clientOpt = ClientOptions::parse_async(clientURI).await?;
-    let client = Client::with_options(clientOpt)?;
+    let client = Client::with_uri_str(clientURI)?;
 
     client
         .database("GPS-device")
-        .run_command(doc! {"ping": 1}, None)
-        .await?;
+        .run_command(doc! {"ping": 1}, None);
     println!("Pinged sucessfully, you have connected to MongoDb");
 
     Ok(client)
 }
 
-#[tokio::main]
-pub async fn location_info_collection() -> mongodb::error::Result<Collection<LocationInfo>> {
-    let client = connect().unwrap();
+pub fn location_info_collection() -> mongodb::error::Result<Collection<LocationInfo>> {
+    let clientURI = env::var("MONGODB_URI").expect("Error: No MONGODB_URI var!");
+    let client = Client::with_uri_str(clientURI)?;
 
-    let collection: Collection<LocationInfo> = client
-        .database("GPS-device")
-        .collection("location_info");
+    let collection: Collection<LocationInfo> =
+        client.database("GPS-device").collection("location_info");
 
     Ok(collection)
 }
 
-#[tokio::main]
-pub async fn device_list_collection() -> mongodb::error::Result<Collection<LocationInfo>> {
+pub fn device_list_collection() -> mongodb::error::Result<Collection<LocationInfo>> {
     let client = connect().unwrap();
 
-    let collection: Collection<LocationInfo> = client
-        .database("GPS-device")
-        .collection("device_list");
+    let collection: Collection<LocationInfo> =
+        client.database("GPS-device").collection("device_list");
+
+    Ok(collection)
+}
+
+pub fn get_collection<T>(name: &'static str) -> mongodb::error::Result<Collection<T>> {
+    let client = connect().unwrap();
+
+    let collection = client.database("GPS-device").collection(name);
 
     Ok(collection)
 }

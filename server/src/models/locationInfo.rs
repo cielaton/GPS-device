@@ -1,9 +1,10 @@
-use serde::{Serialize, Deserialize};
+use rocket::serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
+#[serde(crate = "rocket::serde")]
 pub struct LocationInfo {
-    deviceId: String,
-    longitude: String,
-    latitude: String,
-    accuracy: i32,
+ pub   deviceId: String,
+   pub longitude: String,
+   pub latitude: String,
+   pub accuracy: i32,
 }
