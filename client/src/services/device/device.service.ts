@@ -1,11 +1,14 @@
-import Config from 'react-native-config';
+import { LOCATION_INFO_API_URL } from '../../infrastructure/config/api_url';
 
-const locationInfoApiUrl = Config.LOCATION_INFO_API_URL;
 
 export const getLocationInfo = (deviceId: string) => {
   return new Promise((resolve, reject) => {
-    fetch(`${getLocationInfo}?deviceId=${deviceId}`)
-      .then(result => resolve(result.json()))
-      .catch(error => reject(error.json()));
+    fetch(`${LOCATION_INFO_API_URL}?deviceId=${deviceId}`)
+      .then(result => {
+        resolve(result);
+      })
+      .catch(error => {
+        reject(error);
+      });
   });
 };
