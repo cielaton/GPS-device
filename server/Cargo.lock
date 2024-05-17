@@ -2111,6 +2111,7 @@ dependencies = [
  "dotenv",
  "mongodb",
  "rocket",
+ "serde",
 ]
 
 [[package]]

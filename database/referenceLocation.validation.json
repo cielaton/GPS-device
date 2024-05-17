@@ -9,7 +9,7 @@
       "deviceId": {
         "bsonType": "string"
       },
-      "referenceLocation": {
+      "location": {
         "bsonType": "object",
         "properties": {
           "longitude": {
