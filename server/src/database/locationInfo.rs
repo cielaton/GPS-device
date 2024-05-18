@@ -10,3 +10,5 @@ pub fn get_location_info(deviceId: &str) -> Result<LocationInfo, Error> {
 
     Ok(result.unwrap().unwrap())
 }
+
+pub fn insert_location_info(locationInfoVal: LocationInfo)

@@ -1,4 +1,4 @@
-use crate::models::referenceLocation::ReferenceLocation;
+use crate::models::referenceLocation::{ReferenceLocation, ReferenceLocationWithoutTime};
 use bson::{extjson::de::Error, DateTime};
 use mongodb::results::InsertOneResult;
 
@@ -8,7 +8,7 @@ use crate::database::mongodb::get_collection;
 //     let collection = get_collection("reference_location").unwrap();
 // }
 
-pub fn insert_reference_location(refLocation: ReferenceLocation) -> Result<InsertOneResult, Error> {
+pub fn insert_reference_location(refLocation: ReferenceLocationWithoutTime) -> Result<InsertOneResult, Error> {
     let collection = get_collection("reference_location").unwrap();
     let newReferenceLocation = ReferenceLocation {
         time: DateTime::now(),
