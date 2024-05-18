@@ -5,8 +5,8 @@ use mongodb::{bson::doc, options::FindOneOptions, results::InsertOneResult};
 
 pub fn query_location_info(deviceId: &str) -> Result<LocationInfoWithStringDateTime, Error> {
     let collection = get_collection("location_info").unwrap();
-    let findOptions = FindOneOptions::builder().sort(doc! {"time": -1}).build();
-    let result = collection.find_one(doc! {"deviceId": deviceId}, findOptions);
+    let findOneOption = FindOneOptions::builder().sort(doc! {"time": -1}).build();
+    let result = collection.find_one(doc! {"deviceId": deviceId}, findOneOption);
 
     Ok(result.unwrap().unwrap())
 }

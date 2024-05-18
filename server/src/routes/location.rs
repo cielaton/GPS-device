@@ -1,7 +1,5 @@
 use crate::database::locationInfo::{insert_location_info, query_location_info};
-use crate::models::LocationInfo::{
-    LocationInfo, LocationInfoWithStringDateTime, LocationInfoWithoutTime,
-};
+use crate::models::LocationInfo::{LocationInfoWithStringDateTime, LocationInfoWithoutTime};
 use bson::doc;
 use mongodb::results::InsertOneResult;
 use rocket::http::Status;
