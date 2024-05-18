@@ -3,7 +3,10 @@
 extern crate rocket;
 
 use dotenv::dotenv;
-use routes::{location::get_location, reference::add_reference_location};
+use routes::{
+    location::{add_location_info, get_location_info},
+    reference::add_reference_location,
+};
 mod database;
 mod models;
 mod routes;
@@ -19,6 +22,6 @@ fn rocket() -> _ {
     // database::mongodb::connect().unwrap();
     rocket::build()
         .mount("/", routes![index])
-        .mount("/location", routes![get_location])
+        .mount("/location", routes![get_location_info, add_location_info])
         .mount("/reference", routes![add_reference_location])
 }

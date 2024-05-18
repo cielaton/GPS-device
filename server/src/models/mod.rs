@@ -1,2 +1,2 @@
-pub mod locationInfo;
-pub mod referenceLocation;
+pub mod LocationInfo;
+pub mod ReferenceLocation;

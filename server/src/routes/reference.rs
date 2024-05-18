@@ -3,7 +3,7 @@ use rocket::{http::Status, serde::json::Json};
 
 use crate::{
     database::referenceLocation::insert_reference_location,
-    models::referenceLocation::{ReferenceLocation, ReferenceLocationWithoutTime},
+    models::ReferenceLocation::ReferenceLocationWithoutTime,
 };
 
 #[post("/", format = "application/json", data = "<referenceLocation>")]

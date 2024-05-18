@@ -6,6 +6,9 @@
       "deviceId"
     ],
     "properties": {
+      "time": {
+        "bsonType": "date"
+      },
       "deviceId": {
         "bsonType": "string"
       },
