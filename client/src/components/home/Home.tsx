@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import {TriangleFlag, OnePointCircle} from 'iconoir-react-native';
-import {TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { OnePointCircle, TriangleFlag } from 'iconoir-react-native';
+import { TouchableOpacity } from 'react-native';
 
 import appStyles from '../../styles/appStyles.ts';
 import Id from './Id.tsx';
@@ -11,16 +11,25 @@ import LocationInfo from './LocationInfo.tsx';
 import MapViewComponent from './MapViewComponent.tsx';
 import { DeviceContext } from '../../services/device/device.context.tsx';
 import colors from '../../styles/colors/colors.ts';
+import { ReferenceLocationContext } from '../../services/reference_location/ReferenceLocation.context.tsx';
 
-const Home = ({navigation}: any) => {
+const Home = ({ navigation }: any) => {
+  const { referenceLocation, boundary }: any = useContext(
+    ReferenceLocationContext,
+  );
+
   const [locationRecord, setLocationRecord] = useState(true);
-  const {isValidDevice}: any = useContext(DeviceContext);
+  const { isValidDevice }: any = useContext(DeviceContext);
 
   return (
     <View style={styles.homeComponent}>
       <View style={styles.idWrapper}>
         <Id />
-        {isValidDevice? <></>: <Text style={styles.notValidText}>Your device is not valid!</Text>}
+        {isValidDevice ? (
+          <></>
+        ) : (
+          <Text style={styles.notValidText}>Your device is not valid!</Text>
+        )}
       </View>
       <View style={styles.editableInfoWrapper}>
         <TouchableOpacity
@@ -29,8 +38,8 @@ const Home = ({navigation}: any) => {
           <EditableInfo
             icon={<TriangleFlag color={'white'} width={25} height={25} />}
             title={'Reference'}
-            bodyFirstLine={'16°05\'09.8"N'}
-            bodySecondLine={'108°09\'04.5"E'}
+            bodyFirstLine={referenceLocation.longitude}
+            bodySecondLine={referenceLocation.latitude}
           />
         </TouchableOpacity>
         <TouchableOpacity
@@ -41,7 +50,7 @@ const Home = ({navigation}: any) => {
           <EditableInfo
             icon={<OnePointCircle color={'white'} width={25} height={25} />}
             title={'Boundary'}
-            bodyFirstLine={'100 meters'}
+            bodyFirstLine={`${boundary.value} ${boundary.unit}`}
             bodySecondLine={''}
           />
         </TouchableOpacity>

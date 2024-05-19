@@ -7,7 +7,7 @@ import colors from '../../styles/colors/colors.ts';
 import { DeviceContext } from '../../services/device/device.context.tsx';
 
 const Id = () => {
-  const { setDeviceId, isValidDevice }: any = useContext(DeviceContext);
+  const { deviceId, setDeviceId, isValidDevice }: any = useContext(DeviceContext);
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [deviceIdInput, setDeviceIdInput] = useState('');
@@ -40,7 +40,7 @@ const Id = () => {
         </View>
       ) : (
         <View style={styles.idNonEditWrapper}>
-          <Text style={styles.idString}>e2f06f64dd95ad399e70</Text>
+          <Text style={styles.idString}>{deviceId}</Text>
           <TouchableOpacity onPress={() => setIsEditMode(!isEditMode)}>
             <Edit color={'white'} height={16} width={16} />
           </TouchableOpacity>
