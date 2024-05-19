@@ -36,6 +36,8 @@ export const LocationInfoContextProvider = ({ children }: any) => {
   const onGetLocationInfo = () => {
     getLocationInfo(deviceId)
       .then((result: any) => {
+        location.longitude = result.longitude;
+        location.latitude = result.latitude;
         if (result) {
           setLocation({
             longitude: parseFloat(result.longitude),
@@ -43,6 +45,9 @@ export const LocationInfoContextProvider = ({ children }: any) => {
           });
           console.log('Updated location info');
           console.log(location);
+          if (result.isOutOfBound) {
+            displayWarning();
+          }
         } else {
           console.log('Invalid device');
         }

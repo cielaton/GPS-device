@@ -8,6 +8,7 @@ import { DeviceContextProvider } from '../services/device/device.context.tsx';
 import { ReferenceLocationContextProvider } from '../services/reference_location/ReferenceLocation.context.tsx';
 import { NotificationContextProvider } from '../services/notification/notification.context.tsx';
 import { LocationInfoContextProvider } from '../services/location_info/LocationInfo.context.tsx';
+import WarningScreen from '../screens/Warning.screen.tsx';
 
 const appStack = createStackNavigator();
 const AppStackNavigator = () => {
@@ -16,7 +17,7 @@ const AppStackNavigator = () => {
       <ReferenceLocationContextProvider>
         <LocationInfoContextProvider>
           <appStack.Navigator
-            initialRouteName={'HomeScreen'}
+            initialRouteName={'WarningScreen'}
             screenOptions={{ headerShown: false }}>
             <appStack.Screen name={'HomeScreen'} component={HomeScreen} />
             <appStack.Screen
@@ -31,6 +32,7 @@ const AppStackNavigator = () => {
               name={'LocationHistoryScreen'}
               component={LocationHistoryScreen}
             />
+            <appStack.Screen name={'WarningScreen'} component={WarningScreen} />
           </appStack.Navigator>
         </LocationInfoContextProvider>
       </ReferenceLocationContextProvider>
