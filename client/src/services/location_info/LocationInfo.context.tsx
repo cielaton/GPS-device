@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { getLocationInfo } from './locationInfo.service';
 import { DeviceContext } from '../device/device.context';
 import notifee from '@notifee/react-native';
@@ -35,6 +35,8 @@ export const LocationInfoContextProvider = ({ children }: any) => {
     latitude: 16.0758,
   });
 
+  const isSendedWarning = useRef(false);
+
   const onGetLocationInfo = () => {
     getLocationInfo(deviceId)
       .then((result: any) => {
@@ -47,9 +49,13 @@ export const LocationInfoContextProvider = ({ children }: any) => {
           });
           console.log('Updated location info');
           console.log(location);
-          if (result.isOutOfBound) {
+          console.log(isSendedWarning.current);
+          if (result.isOutOfBound && !isSendedWarning.current) {
+            isSendedWarning.current = true;
             displayWarning();
             navigation.navigate('WarningScreen' as never);
+          } else if (!result.isOutOfBound){
+            isSendedWarning.current = false;
           }
         } else {
           console.log('Invalid device');

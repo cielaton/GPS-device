@@ -63,11 +63,6 @@ const Home = ({ navigation }: any) => {
       </View>
       {locationRecord ? (
         <View style={styles.locationRecordView}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('LocationHistoryScreen')}
-            style={styles.locationInfoWrapper}>
-            <LocationInfo />
-          </TouchableOpacity>
           <View style={styles.mapViewWrapper}>
             <MapViewComponent />
           </View>
@@ -105,14 +100,12 @@ const styles = StyleSheet.create({
 
   locationRecordWrapper: {
     flex: 0.08,
+    justifyContent: 'center',
   },
   locationRecordView: {
     flex: 0.67,
   },
-  locationInfoWrapper: {
-    flex: 0.2,
-  },
   mapViewWrapper: {
-    flex: 0.8,
+    flex: 1,
   },
 });

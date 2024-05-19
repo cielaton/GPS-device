@@ -36,11 +36,11 @@ const styles = StyleSheet.create({
   },
 
   backHomeButtonWrapper: {
-    flex: 0.1,
+    flex: 0.08,
   },
 
   warningView: {
-    flex: 0.9,
+    flex: 0.92,
     justifyContent: 'center',
     alignItems: 'center',
   },
