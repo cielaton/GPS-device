@@ -4,6 +4,7 @@ extern crate rocket;
 
 use dotenv::dotenv;
 use routes::{
+    arlet::send_arlet,
     location::{add_location_info, get_location_info},
     reference::{add_reference_location, get_reference_location},
 };
@@ -27,4 +28,5 @@ fn rocket() -> _ {
             "/reference",
             routes![get_reference_location, add_reference_location],
         )
+        .mount("/arlet", routes![send_arlet])
 }

@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import MapBox, {Camera, MapView} from '@rnmapbox/maps';
 import {StyleSheet, View} from 'react-native';
 import Config from 'react-native-config';
+import { LocationInfoContext } from '../../services/location_info/LocationInfo.context';
 
 const mapBoxAccessToken = Config.MAP_BOX_ACCESS_TOKEN;
 
@@ -9,9 +10,9 @@ MapBox.setAccessToken(mapBoxAccessToken!)
   .then(() => console.log('MapBox initialization successfully'))
   .catch(err => console.log(`Error: ${err}`));
 
-const initialCoordinates = [108.1496424, 16.0736355];
 
 const MapViewComponent = () => {
+  const {location}: any = useContext(LocationInfoContext)
   useEffect(() => {
     MapBox.setTelemetryEnabled(false);
   }, []);
@@ -23,7 +24,7 @@ const MapViewComponent = () => {
         logoEnabled={false}
         attributionEnabled={false}
         scaleBarEnabled={false}>
-        <Camera centerCoordinate={initialCoordinates} zoomLevel={15} />
+        <Camera centerCoordinate={[location.longitude, location.latitude]} zoomLevel={15} />
       </MapView>
     </View>
   );

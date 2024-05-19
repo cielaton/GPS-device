@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { getLocationInfo } from './device.service';
+import { getLocationInfo } from '../location_info/locationInfo.service';
 
 export const DeviceContext = createContext({});
 
