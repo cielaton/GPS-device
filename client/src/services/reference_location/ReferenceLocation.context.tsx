@@ -1,32 +1,45 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {createContext, useContext, useEffect, useState} from 'react';
 import {
   getRefererenceLocation,
   insertReferenceLocation,
 } from './referenceLocation.service';
-import { DeviceContext } from '../device/device.context';
+import {DeviceContext} from '../device/device.context';
 
 export const ReferenceLocationContext = createContext({});
 
-export const ReferenceLocationContextProvider = ({ children }: any) => {
-  const { deviceId }: any = useContext(DeviceContext);
+export const ReferenceLocationContextProvider = ({children}: any) => {
+  const {deviceId}: any = useContext(DeviceContext);
   const [referenceLocation, setReferenceLocation] = useState({
     longitude: '',
     latitude: '',
   });
-  const [boundary, setBoundary] = useState({ value: 0, unit: '' });
+  const [boundary, setBoundary] = useState({value: 0, unit: ''});
+
+  const onSetReferenceLocation = (location: any) => {
+    referenceLocation.longitude = location.longitude;
+    referenceLocation.latitude = location.latitude;
+    setReferenceLocation(location);
+  };
+
+  const onSetBoundary = (boundaryVal: any) => {
+    boundary.value = boundaryVal.value;
+    boundary.unit = boundaryVal.unit;
+    setBoundary(boundaryVal);
+  }
+
 
   const onGetReferenceLocation = () => {
     getRefererenceLocation(deviceId)
       .then((result: any) => {
         if (result) {
           console.log('Fetched reference location sucessfully');
-          const location = result.location
-          const boundary = result.boundary
+          const location = result.location;
+          const boundaryResult = result.boundary;
           setReferenceLocation({
             longitude: location.longitude,
             latitude: location.latitude,
           });
-          setBoundary({ value: boundary.value, unit: boundary.unit });
+          setBoundary({value: boundaryResult.value, unit: boundaryResult.unit});
         }
       })
       .catch((error: any) => {
@@ -57,10 +70,10 @@ export const ReferenceLocationContextProvider = ({ children }: any) => {
     <ReferenceLocationContext.Provider
       value={{
         referenceLocation,
-        setReferenceLocation,
+        onSetReferenceLocation,
         boundary,
-        setBoundary,
-        onInsertReferenceLocation
+        onSetBoundary,
+        onInsertReferenceLocation,
       }}>
       {children}
     </ReferenceLocationContext.Provider>

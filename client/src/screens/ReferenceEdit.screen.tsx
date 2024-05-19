@@ -1,13 +1,15 @@
-import React, { useContext, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useContext, useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import colors from '../styles/colors/colors';
 import BackHomeButton from '../components/reference_and_boundary_edit/BackHomeButton.tsx';
 import LocationInput from '../components/reference_edit/LocationInput.tsx';
 import ApplyButton from '../components/reference_and_boundary_edit/ApplyButton';
-import { ReferenceLocationContext } from '../services/reference_location/ReferenceLocation.context.tsx';
+import {ReferenceLocationContext} from '../services/reference_location/ReferenceLocation.context.tsx';
 
-const ReferenceEditScreen = ({ navigation }: any) => {
-  const { setReferenceLocation, onInsertReferenceLocation }: any = useContext(ReferenceLocationContext);
+const ReferenceEditScreen = ({navigation}: any) => {
+  const {onSetReferenceLocation, onInsertReferenceLocation}: any = useContext(
+    ReferenceLocationContext,
+  );
 
   const [longitudeInput, setLongitudeInput] = useState('');
   const [latitudeInput, setLatitudeInput] = useState('');
@@ -29,9 +31,9 @@ const ReferenceEditScreen = ({ navigation }: any) => {
       </View>
       <View style={styles.applyButtonWrapper}>
         <ApplyButton
-          finalValue={{ longitude: longitudeInput, latitude: latitudeInput }}
-          onPressFunction={setReferenceLocation}
-          insertReferenceLocationFunction = {onInsertReferenceLocation}
+          finalValue={{longitude: longitudeInput, latitude: latitudeInput}}
+          onPressFunction={onSetReferenceLocation}
+          insertReferenceLocationFunction={onInsertReferenceLocation}
           navigation={navigation}
         />
       </View>

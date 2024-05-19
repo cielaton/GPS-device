@@ -1,10 +1,10 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
 
 import HomeScreen from './src/screens/Home.screen.tsx';
 import AppStackNavigator from './src/navigation/AppStack.navigator.tsx';
-import { PaperProvider } from 'react-native-paper';
+import {PaperProvider} from 'react-native-paper';
 
 const App = (): React.JSX.Element => {
   return (

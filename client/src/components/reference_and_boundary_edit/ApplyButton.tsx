@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import colors from '../../styles/colors/colors';
 
 const ApplyButton = ({
@@ -13,7 +13,7 @@ const ApplyButton = ({
       style={styles.applyButton}
       onPress={() => {
         onPressFunction(finalValue);
-        insertReferenceLocationFunction();
+        setTimeout(() => insertReferenceLocationFunction(), 100);
         navigation.navigate('HomeScreen');
       }}>
       <Text style={styles.Text}>Apply</Text>
