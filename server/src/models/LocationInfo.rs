@@ -33,3 +33,12 @@ pub struct LocationInfoWithStringDateTime {
     pub accuracy: i32,
     pub isOutOfBound: bool,
 }
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(crate = "rocket::serde")]
+pub struct LocationInfoWithoutTimeAndIsOutOfBound {
+    pub deviceId: String,
+    pub longitude: String,
+    pub latitude: String,
+    pub accuracy: i32,
+}

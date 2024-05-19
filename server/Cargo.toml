@@ -9,6 +9,7 @@ edition = "2021"
 bson = { version = "2.10.0", features = ["chrono"] }
 chrono = "0.4.38"
 dotenv = "0.15.0"
+geoutils = "0.5.1"
 rocket = { version = "0.5.0", features = ["json"] }
 serde = "1.0.202"
 

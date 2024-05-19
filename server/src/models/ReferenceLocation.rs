@@ -1,18 +1,18 @@
+use bson::serde_helpers::deserialize_rfc3339_string_from_bson_datetime;
 use mongodb::bson::DateTime;
 use serde::{Deserialize, Serialize};
-use bson::serde_helpers::deserialize_rfc3339_string_from_bson_datetime;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(crate = "rocket::serde")]
 pub struct Location {
-    longitude: String,
-    latitude: String,
+    pub longitude: String,
+    pub latitude: String,
 }
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(crate = "rocket::serde")]
 pub struct Boundary {
-    value: f64,
-    unit: String,
+    pub value: f64,
+    pub unit: String,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
