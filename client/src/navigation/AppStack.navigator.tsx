@@ -17,7 +17,7 @@ const AppStackNavigator = () => {
       <ReferenceLocationContextProvider>
         <LocationInfoContextProvider>
           <appStack.Navigator
-            initialRouteName={'WarningScreen'}
+            initialRouteName={'HomeScreen'}
             screenOptions={{ headerShown: false }}>
             <appStack.Screen name={'HomeScreen'} component={HomeScreen} />
             <appStack.Screen

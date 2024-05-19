@@ -24,7 +24,7 @@ const MapViewComponent = () => {
         logoEnabled={false}
         attributionEnabled={false}
         scaleBarEnabled={false}>
-        <Camera centerCoordinate={[location.longitude, location.latitude]} zoomLevel={17} />
+        <Camera centerCoordinate={[location.longitude, location.latitude]} zoomLevel={18} />
       </MapView>
     </View>
   );

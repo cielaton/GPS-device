@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getLocationInfo } from './locationInfo.service';
 import { DeviceContext } from '../device/device.context';
 import notifee from '@notifee/react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const displayWarning = async () => {
   await notifee.requestPermission();
@@ -26,6 +27,7 @@ const displayWarning = async () => {
 export const LocationInfoContext = createContext({});
 
 export const LocationInfoContextProvider = ({ children }: any) => {
+  const navigation = useNavigation();
   const { deviceId }: any = useContext(DeviceContext);
 
   const [location, setLocation] = useState({
@@ -47,6 +49,7 @@ export const LocationInfoContextProvider = ({ children }: any) => {
           console.log(location);
           if (result.isOutOfBound) {
             displayWarning();
+            navigation.navigate('WarningScreen' as never);
           }
         } else {
           console.log('Invalid device');
