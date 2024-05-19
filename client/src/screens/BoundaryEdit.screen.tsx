@@ -1,12 +1,20 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import colors from '../styles/colors/colors';
 import BackHomeButton from '../components/reference_and_boundary_edit/BackHomeButton.tsx';
 import ApplyButton from '../components/reference_and_boundary_edit/ApplyButton';
 import UnitSelection from '../components/boundary_edit/UnitSelection.tsx';
+import {ReferenceLocationContext} from '../services/reference_location/ReferenceLocation.context.tsx';
 
 const BoundaryEditScreen = ({navigation}: any) => {
-  const [boundary, setBoundary] = useState('');
+  const {onSetBoundary, onInsertReferenceLocation}: any = useContext(
+    ReferenceLocationContext,
+  );
+  const [boundaryInput, setBoundaryInput] = useState('');
+  const [unit, setUnit] = useState('meter');
+
+  console.log(boundaryInput);
+  console.log(unit);
 
   return (
     <View style={styles.boundaryEditScreen}>
@@ -14,12 +22,17 @@ const BoundaryEditScreen = ({navigation}: any) => {
         <BackHomeButton navigation={navigation} />
       </View>
       <Text style={styles.boundaryRadiusTitle}>Boundary radius</Text>
-      <TextInput style={styles.Input} onChangeText={setBoundary} />
+      <TextInput style={styles.Input} onChangeText={setBoundaryInput} />
       <View style={styles.unitSelectionWrapper}>
-        <UnitSelection />
+        <UnitSelection unit={unit} setUnit={setUnit} />
       </View>
       <View style={styles.applyButtonWrapper}>
-        <ApplyButton />
+        <ApplyButton
+          finalValue={{value: parseFloat(boundaryInput), unit: unit}}
+          onPressFunction={onSetBoundary}
+          insertReferenceLocationFunction={onInsertReferenceLocation}
+          navigation={navigation}
+        />
       </View>
     </View>
   );

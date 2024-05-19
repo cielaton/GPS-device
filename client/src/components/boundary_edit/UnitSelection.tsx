@@ -9,9 +9,8 @@ import {List} from 'react-native-paper';
 import colors from '../../styles/colors/colors.ts';
 import {StyleSheet} from 'react-native';
 
-const UnitSelection = () => {
+const UnitSelection = ({unit, setUnit}: any) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [unit, setUnit] = useState('meter(s)');
 
   return (
     <IconoirProvider
@@ -30,18 +29,18 @@ const UnitSelection = () => {
         style={styles.accordion}
         titleStyle={styles.title}>
         <List.Item
-          title="meter(s)"
+          title="meter"
           onPress={() => {
-            setUnit('meter(s)');
+            setUnit('meter');
             setIsExpanded(false);
           }}
           style={styles.listItem}
           titleStyle={styles.title}
         />
         <List.Item
-          title="kilometer(s)"
+          title="kilometer"
           onPress={() => {
-            setUnit('kilometer(s)');
+            setUnit('kilometer');
             setIsExpanded(false);
           }}
           style={styles.listItem}

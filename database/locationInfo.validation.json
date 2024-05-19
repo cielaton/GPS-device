@@ -19,6 +19,9 @@
       },
       "accuracy": {
         "bsonType": "int"
+      },
+      "isOutOfBound": {
+        "bsonType": "bool"
       }
     }
   }
