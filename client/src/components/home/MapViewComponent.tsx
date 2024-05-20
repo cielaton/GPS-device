@@ -2,13 +2,12 @@ import React, { useContext, useEffect } from 'react';
 import MapBox, {
   Camera,
   MapView,
-  MarkerView,
   PointAnnotation,
-  UserLocation,
 } from '@rnmapbox/maps';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import Config from 'react-native-config';
 import { LocationInfoContext } from '../../services/location_info/LocationInfo.context';
+import colors from '../../styles/colors/colors';
 
 const mapBoxAccessToken = Config.MAP_BOX_ACCESS_TOKEN;
 
@@ -39,6 +38,17 @@ const MapViewComponent = () => {
           <MapBox.Callout title={'User position'} />
         </PointAnnotation>
       </MapView>
+      <View style={{
+        backgroundColor: colors.secondaryBackground,
+        position: 'absolute',
+        borderRadius: 5,
+        margin: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 5
+      }}>
+        <Text style={styles.infoText}>Longitude: {location.longitude}</Text>
+        <Text style={styles.infoText}>Latitude: {location.latitude}</Text>
+      </View>
     </View>
   );
 };
@@ -55,4 +65,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flex: 1,
   },
+
+  infoText: {
+    fontSize: 15,
+    color: 'white',
+  }
 });

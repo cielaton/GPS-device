@@ -14,7 +14,7 @@ mod routes;
 
 #[get("/")]
 fn index() -> &'static str {
-    "Hello, World!"
+    "A Hu`ng dit xuong, a Tuan Anh vu to, a Thanh ia nhieu, chi My tuyet voi qua cam on vi da lam mai e heheh"
 }
 
 #[launch]

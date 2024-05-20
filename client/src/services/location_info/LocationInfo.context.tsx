@@ -1,8 +1,15 @@
-import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { getLocationInfo } from './locationInfo.service';
 import { DeviceContext } from '../device/device.context';
 import notifee from '@notifee/react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Vibration } from 'react-native';
 
 const displayWarning = async () => {
   await notifee.requestPermission();
@@ -35,7 +42,7 @@ export const LocationInfoContextProvider = ({ children }: any) => {
     latitude: 16.0758,
   });
 
-  const isSendedWarning = useRef(false);
+  const isSentWarning = useRef(false);
 
   const onGetLocationInfo = () => {
     getLocationInfo(deviceId)
@@ -49,13 +56,18 @@ export const LocationInfoContextProvider = ({ children }: any) => {
           });
           console.log('Updated location info');
           console.log(location);
-          console.log(isSendedWarning.current);
-          if (result.isOutOfBound && !isSendedWarning.current) {
-            isSendedWarning.current = true;
+          if (result.isOutOfBound && !isSentWarning.current) {
+            isSentWarning.current = true;
             displayWarning();
+
+            const ONE_SECOND_IN_MS = 400;
+            const PATTERN = [1 * ONE_SECOND_IN_MS, 2 * ONE_SECOND_IN_MS];
+            Vibration.vibrate(PATTERN, true);
+
             navigation.navigate('WarningScreen' as never);
-          } else if (!result.isOutOfBound){
-            isSendedWarning.current = false;
+            console.log('[Warning]: Has been sent');
+          } else if (!result.isOutOfBound) {
+            isSentWarning.current = false;
           }
         } else {
           console.log('Invalid device');

@@ -4,6 +4,7 @@ import {
   insertReferenceLocation,
 } from './referenceLocation.service';
 import {DeviceContext} from '../device/device.context';
+import { locationManager } from '@rnmapbox/maps';
 
 export const ReferenceLocationContext = createContext({});
 
@@ -35,11 +36,11 @@ export const ReferenceLocationContextProvider = ({children}: any) => {
           console.log('Fetched reference location sucessfully');
           const location = result.location;
           const boundaryResult = result.boundary;
-          setReferenceLocation({
+          onSetReferenceLocation({
             longitude: location.longitude,
             latitude: location.latitude,
           });
-          setBoundary({value: boundaryResult.value, unit: boundaryResult.unit});
+          onSetBoundary({value: boundaryResult.value, unit: boundaryResult.unit});
         }
       })
       .catch((error: any) => {
@@ -64,7 +65,7 @@ export const ReferenceLocationContextProvider = ({children}: any) => {
 
   useEffect(() => {
     onGetReferenceLocation();
-  }, [deviceId]);
+  }, [deviceId ]);
 
   return (
     <ReferenceLocationContext.Provider

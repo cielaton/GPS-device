@@ -13,9 +13,6 @@ const BoundaryEditScreen = ({navigation}: any) => {
   const [boundaryInput, setBoundaryInput] = useState('');
   const [unit, setUnit] = useState('meter');
 
-  console.log(boundaryInput);
-  console.log(unit);
-
   return (
     <View style={styles.boundaryEditScreen}>
       <View style={styles.backHomeButtonWrapper}>

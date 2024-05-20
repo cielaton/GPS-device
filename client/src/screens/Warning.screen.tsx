@@ -1,10 +1,11 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, Vibration, View } from 'react-native';
 import BackHomeButton from '../components/reference_and_boundary_edit/BackHomeButton';
 import colors from '../styles/colors/colors';
 import { WarningCircle } from 'iconoir-react-native';
 
-const WarningScreen = ({navigation}: any) => {
+const WarningScreen = ({ navigation }: any) => {
+
   return (
     <View style={styles.container}>
       <View style={styles.backHomeButtonWrapper}>

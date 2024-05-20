@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, TouchableOpacity, Vibration} from 'react-native';
 import {ArrowLeft} from 'iconoir-react-native';
 import colors from '../../styles/colors/colors';
 
@@ -9,6 +9,7 @@ const BackHomeButton = ({navigation}: any) => {
       style={styles.backHomeButton}
       onPress={() => {
         navigation.navigate('HomeScreen');
+        Vibration.cancel();
       }}>
       <ArrowLeft
         width={16}
